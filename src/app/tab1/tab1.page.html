@@ -6,7 +6,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <p>Desliza hacia abajo para actualizar</p>
+
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Descripcion Biografica</ion-title>
@@ -18,11 +24,12 @@
       <ion-item slot="header" color="light">
         <ion-label>Informacion Personal</ion-label>
       </ion-item>
-      <div class="ion-padding" slot="content">Kevin Enrique Coloma Fonseca
+      <div class="ion-padding" slot="content">
+        Kevin Enrique Coloma Fonseca
         <ion-list>
           <ion-item>
             <ion-label>Edad</ion-label>
-            <ion-badge color="primary">23 años</ion-badge>
+            <ion-badge color="primary">23 años</ion-badge>
           </ion-item>
           <ion-item>
             <ion-label>Localidad</ion-label>
@@ -51,9 +58,10 @@
       </div>
     </ion-accordion>
   </ion-accordion-group>
+
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Experienza Laboral</ion-card-title>
+      <ion-card-title>Experiencia Laboral</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       Lugares donde he trabajado
@@ -61,18 +69,21 @@
     <ion-button fill="clear" (click)="openUrl('https://www.intexcompu.com/')">Intexcompu</ion-button>
     <ion-button fill="clear" (click)="openUrl('https://www.match-working.com/')">Matchworking</ion-button>
   </ion-card>
+
   <ion-label style="display: flex; justify-content: center;">
-    Hola, que te trae por aqui?
+    Hola, ¿qué te trae por aquí?
   </ion-label>
+
   <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
     <ion-checkbox labelPlacement="end">Eres el Ingeniero</ion-checkbox>
     <ion-checkbox labelPlacement="end">Es parte de una prueba</ion-checkbox>
   </div>
+
   <ion-chip style="display: flex; justify-content: center;" color="primary">
     <ion-avatar>
       <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
     </ion-avatar>
-    <ion-label>Novedades sobre mi</ion-label>
+    <ion-label>Novedades sobre mí</ion-label>
     <ion-icon name="close-circle"></ion-icon>
   </ion-chip>
   
@@ -81,4 +92,68 @@
     <ion-label>Me encanta el Encebollado</ion-label>
     <ion-icon name="close"></ion-icon>
   </ion-chip>
+
+  <div style="display: flex; justify-content: center;">
+    <ion-button id="click-trigger">Estudios</ion-button>
+    <ion-popover trigger="click-trigger" triggerAction="click">
+      <ng-template>
+        <ion-content class="ion-padding">Escuela Politécnica Nacional</ion-content>
+      </ng-template>
+    </ion-popover>
+  </div>
+
+  <div>
+    <h2>
+      Frameworks Favoritos
+    </h2>
+    <ion-list>
+      <!-- The reorder gesture is disabled by default, enable it to drag and drop items -->
+      <!-- Casting $event to $any is a temporary fix for this bug https://github.com/ionic-team/ionic-framework/issues/24245 -->
+      <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
+        <ion-item>
+          <ion-label> Vue </ion-label>
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label> Angular </ion-label>
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label> React</ion-label>
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+      </ion-reorder-group>
+    </ion-list>
+  </div>
+
+  <ion-button id="open-modal" expand="block">Escribe tu nombre</ion-button>
+  <p>{{ message }}</p>
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-title>Bienvenido</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirmar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input
+            label="Ingresa tu nombre"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Jon Snow"
+            [(ngModel)]="name"
+          ></ion-input>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
