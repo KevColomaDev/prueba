@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { addIcons } from 'ionicons';
+import { close, closeCircle, pin} from 'ionicons/icons';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,15 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  constructor() {
+    addIcons({
+      'close': close,
+      'close-circle': closeCircle,
+      'pin': pin
+    });
+  }
+  openUrl(url: string) {
+    window.open(url, '_blank');
+  }
 
 }

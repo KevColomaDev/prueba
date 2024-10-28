@@ -12,13 +12,24 @@
       <ion-title size="large">Descripcion Biografica</ion-title>
     </ion-toolbar>
   </ion-header>
-
+  
   <ion-accordion-group>
     <ion-accordion value="first" toggleIcon="caret-down-circle" toggleIconSlot="start">
       <ion-item slot="header" color="light">
-        <ion-label>Nombres</ion-label>
+        <ion-label>Informacion Personal</ion-label>
       </ion-item>
-      <div class="ion-padding" slot="content">Kevin Enrique Coloma Fonseca</div>
+      <div class="ion-padding" slot="content">Kevin Enrique Coloma Fonseca
+        <ion-list>
+          <ion-item>
+            <ion-label>Edad</ion-label>
+            <ion-badge color="primary">23 años</ion-badge>
+          </ion-item>
+          <ion-item>
+            <ion-label>Localidad</ion-label>
+            <ion-badge color="secondary">Quito</ion-badge>
+          </ion-item>
+        </ion-list>
+      </div>
     </ion-accordion>
 
     <ion-accordion value="second" toggleIcon="caret-down-circle" toggleIconSlot="start">
@@ -40,14 +51,34 @@
       </div>
     </ion-accordion>
   </ion-accordion-group>
-  <ion-list>
-    <ion-item>
-      <ion-label>Edad</ion-label>
-      <ion-badge color="primary">23 años</ion-badge>
-    </ion-item>
-    <ion-item>
-      <ion-label>Localidad</ion-label>
-      <ion-badge color="secondary">Quito</ion-badge>
-    </ion-item>
-  </ion-list>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Experienza Laboral</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Lugares donde he trabajado
+    </ion-card-content>
+    <ion-button fill="clear" (click)="openUrl('https://www.intexcompu.com/')">Intexcompu</ion-button>
+    <ion-button fill="clear" (click)="openUrl('https://www.match-working.com/')">Matchworking</ion-button>
+  </ion-card>
+  <ion-label style="display: flex; justify-content: center;">
+    Hola, que te trae por aqui?
+  </ion-label>
+  <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+    <ion-checkbox labelPlacement="end">Eres el Ingeniero</ion-checkbox>
+    <ion-checkbox labelPlacement="end">Es parte de una prueba</ion-checkbox>
+  </div>
+  <ion-chip style="display: flex; justify-content: center;" color="primary">
+    <ion-avatar>
+      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+    <ion-label>Novedades sobre mi</ion-label>
+    <ion-icon name="close-circle"></ion-icon>
+  </ion-chip>
+  
+  <ion-chip style="display: flex; justify-content: center;" color="warning">
+    <ion-icon name="pin" color="primary"></ion-icon>
+    <ion-label>Me encanta el Encebollado</ion-label>
+    <ion-icon name="close"></ion-icon>
+  </ion-chip>
 </ion-content>

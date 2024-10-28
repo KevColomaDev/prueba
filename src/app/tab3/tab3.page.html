@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Calculo de días
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,26 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Calculo de días</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> 
+  <!-- Display the result in a textarea -->
+   <div style="display: flex; gap: 10px; align-items: center; text-align: center;">
+     <ion-label>
+       Diás transcurridos:
+     </ion-label>
+     <ion-textarea readonly="true" [(ngModel)]="days"></ion-textarea>
+   </div>
+  <!-- Create two day datapickers to select dates -->
+  <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; align-items: center;">
+    <ion-label>Fecha inicial</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Fecha inicial" [(ngModel)]="initialDate"></ion-datetime>
+    <ion-label>Fecha final</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Fecha final" [(ngModel)]="finalDate"></ion-datetime>
+  </div>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-button expand="block" (click)="calculateDays()">Calcular</ion-button>
+  <ion-button expand="block" (click)="clearDates()">Limpiar</ion-button>
+
+
 </ion-content>
